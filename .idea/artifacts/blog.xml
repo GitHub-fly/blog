@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="blog">
+    <output-path>D:/Apache Software Foundation/Tomcat 9.0/webapps</output-path>
+    <root id="archive" name="blog.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="blog" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.48" />
+          <element id="library" level="project" name="Maven: org.jsoup:jsoup:1.12.1" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.5" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="blog/web/Web" />
+    </root>
+  </artifact>
+</component>

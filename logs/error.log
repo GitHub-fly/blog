@@ -1,0 +1,1 @@
+2019-11-09.15:28:34 ERROR [main] com.scs.web.blog.dao.UserDaoTest.batchInsert:25  批量新增用户出现异常
