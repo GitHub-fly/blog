@@ -9,7 +9,6 @@ import com.scs.web.blog.util.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +36,7 @@ public class UserServiceImpl implements UserService {
         }
         if (user != null) {
             if (user.getPassword().equals(userDto.getPassword())) {
-                map.put("msg", Message.SING_IN_SUCCESS);
+                map.put("msg", Message.SIGN_IN_SUCCESS);
                 map.put("data", user);
                 logger.info("手机号为：" + userDto.getMobile() + "的用户登录成功");
             } else {

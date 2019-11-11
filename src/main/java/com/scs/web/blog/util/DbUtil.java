@@ -85,11 +85,4 @@ public class DbUtil {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) {
-        Connection connection = null;
-        for (int i = 0; i < 3; i++) {
-            connection = DbUtil.getConnection();
-        }
-    }
 }

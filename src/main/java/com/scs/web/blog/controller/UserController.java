@@ -2,7 +2,6 @@ package com.scs.web.blog.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mysql.jdbc.StreamingNotifiable;
 import com.scs.web.blog.domain.UserDto;
 import com.scs.web.blog.factory.ServiceFactory;
 import com.scs.web.blog.service.UserService;
@@ -49,7 +48,7 @@ public class UserController extends HttpServlet {
         String msg = (String) map.get("msg");
         ResponseObject ro;
         switch (msg) {
-            case Message.SING_IN_SUCCESS:
+            case Message.SIGN_IN_SUCCESS:
                 ro = ResponseObject.success(200, msg, map.get("data"));
                 break;
             case Message.PASSWORD_ERROR:

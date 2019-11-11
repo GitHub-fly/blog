@@ -1,5 +1,6 @@
 package com.scs.web.blog.util;
 
+import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.entity.User;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -8,10 +9,13 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.print.Doc;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author mq_xu
@@ -51,4 +55,83 @@ public class JSoupSpider {
         }
         return userList;
     }
+
+    public static List<Article> getArticle() {
+        Document document = null;
+        List<Article> articleList = new ArrayList<>(100);
+        int j = 0;
+        for (int i = 0; i <= 180; ) {
+            try {
+                document = Jsoup.connect("https://book.douban.com/review/best/?start=" + i).get();
+            } catch (IOException e) {
+                logger.error("连接失败");
+            }
+            Elements mainList = document.getElementsByClass("main review-item");
+            mainList.forEach(item -> {
+                String cover = item.child(0).child(0).attr("src");
+                String nickName = item.child(1).child(1).text();
+                String publishTime = null;
+                if (item.child(1).children().size() == 4) {
+                    publishTime = item.child(1).child(3).text();
+                } else {
+                    publishTime = item.child(1).child(2).text();
+                }
+
+                String title = item.child(2).child(0).child(0).text();
+                String content = item.child(2).child(1).text().substring(14);
+                String likes = item.child(2).child(3).child(0).text();
+                String co = item.child(2).child(3).child(2).text();
+                String comments = co.substring(0, co.length() - 2);
+
+                Article article = new Article();
+                article.setTitle(title);
+                article.setContent(content);
+                article.setCover(cover);
+                article.setDiamond(new Random().nextInt(100));
+                article.setNickname(nickName);
+                article.setComments(Integer.valueOf(comments));
+                article.setLikes(Integer.valueOf(likes));
+                article.setPublishTime(Timestamp.valueOf(publishTime).toLocalDateTime());
+                articleList.add(article);
+            });
+            j++;
+            i = 2 * j * 10;
+        }
+        return articleList;
+    }
+
+    public static void main(String[] args) {
+            Document document = null;
+            List<Article> articleList = new ArrayList<>(100);
+            int j = 0;
+            for (int i = 0; i <= 180; ) {
+                try {
+                    document = Jsoup.connect("https://book.douban.com/review/best/?start=" + i).get();
+                } catch (IOException e) {
+                    logger.error("连接失败");
+                }
+                Elements mainList = document.getElementsByClass("main review-item");
+                mainList.forEach(item -> {
+                    String cover = item.child(0).child(0).attr("src");
+                    String nickName = item.child(1).child(1).text();
+                    String publishTime = null;
+                    if (item.child(1).children().size() == 4) {
+                        publishTime = item.child(1).child(3).text();
+                    } else {
+                        publishTime = item.child(1).child(2).text();
+                    }
+
+                    String title = item.child(2).child(0).child(0).text();
+                    String content = item.child(2).child(1).text().substring(14);
+                    String likes = item.child(2).child(3).child(0).text();
+                    String co = item.child(2).child(3).child(2).text();
+                    String comments = co.substring(0, co.length() - 2);
+
+                    System.out.println(title);
+                    System.out.println(content);
+                });
+                j++;
+                i = 2 * j * 10;
+            }
+        }
 }

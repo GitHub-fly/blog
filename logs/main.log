@@ -1,2 +1,2 @@
-2019-11-09.16:17:57 INFO  [main] com.scs.web.blog.service.impl.UserServiceImpl.signIn:40  手机号为：1399683628的用户登录成功
-2019-11-09.16:19:49 INFO  [main] com.scs.web.blog.service.impl.UserServiceImpl.signIn:40  手机号为：1399683628的用户登录成功
+2019-11-10.09:55:56 INFO  [main] com.scs.web.blog.dao.ArticleDaoTest.selectAll:31  成功初始化图书信息
+2019-11-10.09:56:18 INFO  [main] com.scs.web.blog.dao.ArticleDaoTest.selectAll:30  成功初始化图书信息

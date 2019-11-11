@@ -4,6 +4,8 @@ import com.scs.web.blog.dao.UserDao;
 import com.scs.web.blog.entity.User;
 import com.scs.web.blog.service.UserService;
 import com.scs.web.blog.util.DbUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +21,9 @@ import java.util.List;
  * @Version 1.0
  **/
 public class UserDaoImpl implements UserDao {
+
+    private static Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
+
     @Override
     public User findUserMobile(String mobile) throws SQLException {
         Connection connection = DbUtil.getConnection();
@@ -44,6 +49,7 @@ public class UserDaoImpl implements UserDao {
             user.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
             user.setStatus(rs.getShort("status"));
         }
+//        DbUtil.close(rs, pstmt, connection);
         return user;
     }
 
@@ -66,13 +72,13 @@ public class UserDaoImpl implements UserDao {
                 pstmt.setObject(8, user.getCreateTime());
                 pstmt.addBatch();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error("批量导入用户信息出错");
             }
         });
         int[] result = pstmt.executeBatch();
-        // 被忘记提交
+        // 不能忘记提交
         connection.commit();
-        DbUtil.close(null, pstmt, connection);
+//        DbUtil.close(null, pstmt, connection);
         return result;
 
     }

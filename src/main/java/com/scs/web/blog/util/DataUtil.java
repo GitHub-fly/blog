@@ -12,7 +12,7 @@ import java.util.Random;
  * @Date 2019/11/9
  * @Version 1.0
  **/
-public class DataUtil {
+public class  DataUtil {
 
     /**
      * 获得电话号码

@@ -1,0 +1,5 @@
+2019-11-09.23:03:52 ERROR [main] com.scs.web.blog.dao.ArticleDaoTest.selectAll:25  获取所有文章信息出错
+2019-11-09.23:07:23 ERROR [main] com.scs.web.blog.dao.ArticleDaoTest.selectAll:25  获取所有文章信息出错
+2019-11-09.23:19:59 INFO  [main] com.scs.web.blog.dao.ArticleDaoTest.selectAll:28  成功初始化图书信息
+2019-11-09.23:27:54 INFO  [main] com.scs.web.blog.service.impl.ArticleServiceImpl.initArticle:34  成功初始化图书信息
+2019-11-09.23:48:31 INFO  [main] com.scs.web.blog.service.impl.ArticleServiceImpl.initArticle:34  成功初始化图书信息
