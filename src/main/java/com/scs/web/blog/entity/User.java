@@ -2,6 +2,7 @@ package com.scs.web.blog.entity;
 
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 

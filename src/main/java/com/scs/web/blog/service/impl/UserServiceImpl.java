@@ -6,6 +6,7 @@ import com.scs.web.blog.entity.User;
 import com.scs.web.blog.factory.DaoFactory;
 import com.scs.web.blog.service.UserService;
 import com.scs.web.blog.util.Message;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService {
             logger.error("根据手机号查询用户出现异常");
         }
         if (user != null) {
-            if (user.getPassword().equals(userDto.getPassword())) {
+            if (user.getPassword().equals(DigestUtils.md5Hex(userDto.getPassword()))) {
                 map.put("msg", Message.SIGN_IN_SUCCESS);
                 map.put("data", user);
                 logger.info("手机号为：" + userDto.getMobile() + "的用户登录成功");
@@ -45,6 +46,27 @@ public class UserServiceImpl implements UserService {
             }
         } else {
             map.put("msg", Message.MOBILE_NOT_FOUND);
+        }
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> register(UserDto userDto) {
+        Map<String, Object> map = new HashMap<>();
+        int i = 0;
+        try {
+            i = userDao.insert(userDto);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("用户注册时出错！");
+        }
+        System.out.println("i的值为：" + i);
+        if (i == 1) {
+            map.put("msg", Message.REGISTER_SUCCESS);
+            map.put("data", userDto);
+            logger.info("注册" + userDto.getMobile() + "用户成功");
+        } else {
+            map.put("msg", Message.REGISTER_DEFEATED);
         }
         return map;
     }

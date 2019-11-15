@@ -34,7 +34,7 @@ public class JSoupSpider {
             try {
                 document = Jsoup.connect("https://www.jianshu.com/recommendations/users?utm_source=desktop&utm_medium=index-users&page=" + i).get();
             } catch (IOException e) {
-                logger.error("连接失败");
+                logger.error("i=" + i + "的连接失败");
             }
             Elements divs = document.getElementsByClass("col-xs-8");
             divs.forEach(div -> {
@@ -50,6 +50,12 @@ public class JSoupSpider {
                 user.setIntroduction(linkChildren.get(2).text());
                 user.setBirthday(DataUtil.getBirthday());
                 user.setCreateTime(LocalDateTime.now());
+                user.setAddress("");
+                user.setHomepage("");
+                user.setFollows((short) new Random().nextInt(500));
+                user.setFans((short) new Random().nextInt(500));
+                user.setArticles((short) new Random().nextInt(10));
+                user.setStatus((short) 1);
                 userList.add(user);
             });
         }
@@ -69,7 +75,6 @@ public class JSoupSpider {
             Elements mainList = document.getElementsByClass("main review-item");
             mainList.forEach(item -> {
                 String cover = item.child(0).child(0).attr("src");
-                String nickName = item.child(1).child(1).text();
                 String publishTime = null;
                 if (item.child(1).children().size() == 4) {
                     publishTime = item.child(1).child(3).text();
@@ -85,10 +90,9 @@ public class JSoupSpider {
 
                 Article article = new Article();
                 article.setTitle(title);
-                article.setContent(content);
+                article.setContent(content.substring(0, content.length()-4));
                 article.setCover(cover);
                 article.setDiamond(new Random().nextInt(100));
-                article.setNickname(nickName);
                 article.setComments(Integer.valueOf(comments));
                 article.setLikes(Integer.valueOf(likes));
                 article.setPublishTime(Timestamp.valueOf(publishTime).toLocalDateTime());
@@ -99,39 +103,4 @@ public class JSoupSpider {
         }
         return articleList;
     }
-
-    public static void main(String[] args) {
-            Document document = null;
-            List<Article> articleList = new ArrayList<>(100);
-            int j = 0;
-            for (int i = 0; i <= 180; ) {
-                try {
-                    document = Jsoup.connect("https://book.douban.com/review/best/?start=" + i).get();
-                } catch (IOException e) {
-                    logger.error("连接失败");
-                }
-                Elements mainList = document.getElementsByClass("main review-item");
-                mainList.forEach(item -> {
-                    String cover = item.child(0).child(0).attr("src");
-                    String nickName = item.child(1).child(1).text();
-                    String publishTime = null;
-                    if (item.child(1).children().size() == 4) {
-                        publishTime = item.child(1).child(3).text();
-                    } else {
-                        publishTime = item.child(1).child(2).text();
-                    }
-
-                    String title = item.child(2).child(0).child(0).text();
-                    String content = item.child(2).child(1).text().substring(14);
-                    String likes = item.child(2).child(3).child(0).text();
-                    String co = item.child(2).child(3).child(2).text();
-                    String comments = co.substring(0, co.length() - 2);
-
-                    System.out.println(title);
-                    System.out.println(content);
-                });
-                j++;
-                i = 2 * j * 10;
-            }
-        }
 }

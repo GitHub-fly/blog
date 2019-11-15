@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Map;
 
 /**
@@ -27,7 +29,7 @@ import java.util.Map;
  * @Date 2019/11/9
  * @Version 1.0
  **/
-@WebServlet(urlPatterns = "/sign-in")
+@WebServlet(urlPatterns = {"/api/sign-in", "/api/register"})
 public class UserController extends HttpServlet {
 
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -41,18 +43,32 @@ public class UserController extends HttpServlet {
         while ((line = reader.readLine()) != null) {
             stringBuilder.append(line);
         }
-        logger.info("登录用户信息：" + stringBuilder.toString());
         Gson gson = new GsonBuilder().create();
         UserDto userDto = gson.fromJson(stringBuilder.toString(), UserDto.class);
-        Map<String, Object> map = userService.signIn(userDto);
+        Map<String, Object> map = null;
+        // 获取请求路径
+        String requestPath = req.getRequestURI().trim();
+        System.out.println(requestPath);
+        switch (requestPath) {
+            case "/api/sign-in":
+                System.out.println("进入登录");
+                map = userService.signIn(userDto);
+                break;
+            case "/api/register":
+                System.out.println("进入注册");
+                map = userService.register(userDto);
+                break;
+        }
         String msg = (String) map.get("msg");
         ResponseObject ro;
         switch (msg) {
             case Message.SIGN_IN_SUCCESS:
+            case Message.REGISTER_SUCCESS:
                 ro = ResponseObject.success(200, msg, map.get("data"));
                 break;
             case Message.PASSWORD_ERROR:
             case Message.MOBILE_NOT_FOUND:
+            case Message.REGISTER_DEFEATED:
             default:
                 ro = ResponseObject.success(200, msg);
         }

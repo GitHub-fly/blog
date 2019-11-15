@@ -1,8 +1,13 @@
 package com.scs.web.blog.util;
 
+import com.scs.web.blog.entity.User;
+import com.scs.web.blog.factory.DaoFactory;
 import org.apache.commons.codec.digest.DigestUtils;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -22,7 +27,7 @@ public class  DataUtil {
     public static String getMobile() {
         StringBuilder mobile = new StringBuilder("139");
         Random random = new Random();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             int num = random.nextInt(10);
             mobile.append(num);
         }
@@ -63,5 +68,23 @@ public class  DataUtil {
         Random random = new Random();
         int bound = random.nextInt(8888);
         return now.minusDays(bound);
+    }
+
+    /**
+     * 获取随机作者id
+     * @return
+     */
+    public static int getUserId() {
+        List<User> list = new ArrayList<>();
+        try {
+             list = DaoFactory.getUserDaoInstance().selectAll();
+            System.out.println("sdasd");
+            System.out.println(list.size());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        int userIdMax = list.size();
+        Random random = new Random();
+        return random.nextInt(userIdMax) + 1;
     }
 }

@@ -1,16 +1,21 @@
 package com.scs.web.blog.dao.impl;
 
 import com.scs.web.blog.dao.UserDao;
+import com.scs.web.blog.domain.UserDto;
+import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.entity.User;
 import com.scs.web.blog.service.UserService;
+import com.scs.web.blog.util.DataUtil;
 import com.scs.web.blog.util.DbUtil;
+import jdk.jfr.Timespan;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,7 +45,11 @@ public class UserDaoImpl implements UserDao {
             user.setNickname(rs.getString("nickname"));
             user.setAvatar(rs.getString("avatar"));
             user.setGender(rs.getString("gender"));
-            user.setBirthday(rs.getDate("birthday").toLocalDate());
+            if (rs.getDate("birthday") == null) {
+                user.setBirthday(null);
+            } else {
+                user.setBirthday(rs.getDate("birthday").toLocalDate());
+            }
             user.setIntroduction(rs.getString("introduction"));
             user.setAddress(rs.getString("address"));
             user.setFollows(rs.getShort("follows"));
@@ -56,7 +65,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public int[] batchInsert(List<User> userList) throws SQLException {
         Connection connection = DbUtil.getConnection();
-        String sql = "INSERT INTO t_user (mobile,password,nickname,avatar,gender,birthday,introduction,create_time) VALUES (?,?,?,?,?,?,?,?) ";
+        String sql = "INSERT INTO t_user VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         connection.setAutoCommit(false);
         userList.forEach(user -> {
@@ -68,8 +77,14 @@ public class UserDaoImpl implements UserDao {
                 pstmt.setString(5, user.getGender());
                 // 日期的设置，可以使用setObject
                 pstmt.setObject(6, user.getBirthday());
-                pstmt.setString(7, user.getIntroduction());
-                pstmt.setObject(8, user.getCreateTime());
+                pstmt.setString(7, user.getAddress());
+                pstmt.setString(8, user.getIntroduction());
+                pstmt.setString(9, user.getHomepage());
+                pstmt.setShort(10, user.getFollows());
+                pstmt.setShort(11, user.getFans());
+                pstmt.setShort(12, user.getArticles());
+                pstmt.setObject(13, user.getCreateTime());
+                pstmt.setShort(14, user.getStatus());
                 pstmt.addBatch();
             } catch (SQLException e) {
                 logger.error("批量导入用户信息出错");
@@ -84,12 +99,46 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int insert(User user) throws SQLException {
-        return 0;
+    public int insert(UserDto userDto) throws SQLException {
+        Connection connection = DbUtil.getConnection();
+        String sql = "INSERT INTO t_user(mobile, password, nickname, create_time) VALUES(?, ?, ?, ?) ";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.setString(1, userDto.getMobile());
+        pstmt.setString(2, DigestUtils.md5Hex(userDto.getPassword()));
+        pstmt.setString(3, userDto.getNickname());
+        pstmt.setObject(4, Timestamp.valueOf(LocalDateTime.now()));
+        int i = pstmt.executeUpdate();
+        System.out.println("执行为插入方法后受影响的行数为：" + i);
+        return i;
     }
 
     @Override
     public List<User> selectAll() throws SQLException {
-        return null;
+        List<User> userList = new ArrayList<>();
+        Connection connection = DbUtil.getConnection();
+        String sql = "SELECT * FROM t_user ORDER BY id DESC ";
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while (rs.next()) {
+            User user = new User();
+            user.setId(rs.getLong("id"));
+            user.setMobile(rs.getString("mobile"));
+            user.setNickname(rs.getString("nickname"));
+            user.setAvatar(rs.getString("avatar"));
+            user.setGender(rs.getString("gender"));
+            user.setBirthday(rs.getDate("birthday").toLocalDate());
+            user.setAddress(rs.getString("address"));
+            user.setIntroduction(rs.getString("introduction"));
+            user.setHomepage(rs.getString("homepage"));
+            user.setFollows(rs.getShort("follows"));
+            user.setFollows(rs.getShort("fans"));
+            user.setArticles(rs.getShort("articles"));
+            user.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
+            user.setAddress(rs.getString("address"));
+            user.setStatus(rs.getShort("status"));
+            userList.add(user);
+        }
+//        DbUtil.close(rs, stmt, connection);
+        return userList;
     }
 }

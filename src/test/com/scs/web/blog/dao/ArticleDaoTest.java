@@ -9,9 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Spliterator;
-
-import static org.junit.Assert.*;
 
 public class ArticleDaoTest {
 

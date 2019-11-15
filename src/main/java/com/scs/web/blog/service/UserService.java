@@ -1,6 +1,7 @@
 package com.scs.web.blog.service;
 
 import com.scs.web.blog.domain.UserDto;
+import com.scs.web.blog.entity.User;
 
 import java.util.Map;
 
@@ -19,4 +20,11 @@ public interface UserService {
      * @return
      */
     Map<String, Object> signIn(UserDto userDto);
+
+    /**
+     * 注册新用户
+     * @param userDto
+     * @return
+     */
+    Map<String, Object> register(UserDto userDto);
 }

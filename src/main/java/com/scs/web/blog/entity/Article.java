@@ -16,11 +16,11 @@ import java.time.LocalDateTime;
 public class Article {
 
     private Long id;
+    private Long userId;
     private String title;
     private String content;
     private String cover;
     private Integer diamond;
-    private String nickname;
     private Integer comments;
     private Integer likes;
     private LocalDateTime publishTime;
