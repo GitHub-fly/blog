@@ -1,6 +1,7 @@
 package com.scs.web.blog.dao.impl;
 
 import com.scs.web.blog.dao.ArticleDao;
+import com.scs.web.blog.domain.vo.ArticleVo;
 import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.service.impl.ArticleServiceImpl;
 import com.scs.web.blog.util.DataUtil;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author xunmi
@@ -70,6 +72,34 @@ public class ArticleDaoImpl implements ArticleDao {
             articleList.add(article);
         }
 //        DbUtil.close(rs, stmt, connection);
+        return articleList;
+    }
+
+    @Override
+    public List<ArticleVo> getHotArticle() throws SQLException {
+        List<ArticleVo> articleList = new ArrayList<>();
+        Connection connection = DbUtil.getConnection();
+        String sql = "SELECT a.id, a.user_id, a.title, a.content, a.cover, a.diamond, a.comments, a.likes, a.publish_time, b.nickname\n" +
+                "FROM t_article a\n" +
+                "LEFT JOIN t_user b\n" +
+                "ON a.user_id = b.id\n" +
+                "ORDER BY a.diamond DESC LIMIT 20 ";
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while (rs.next()) {
+            ArticleVo article = new ArticleVo();
+            article.setId(rs.getLong("id"));
+            article.setUserId(rs.getLong("user_id"));
+            article.setNickname(rs.getString("nickname"));
+            article.setTitle(rs.getString("title"));
+            article.setContent(rs.getString("content"));
+            article.setCover(rs.getString("cover"));
+            article.setDiamond(rs.getInt("diamond"));
+            article.setComments(rs.getInt("comments"));
+            article.setLikes(rs.getInt("likes"));
+            article.setPublishTime(rs.getTimestamp("publish_time").toLocalDateTime());
+            articleList.add(article);
+        }
         return articleList;
     }
 }

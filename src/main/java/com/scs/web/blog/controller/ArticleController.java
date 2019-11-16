@@ -2,6 +2,7 @@ package com.scs.web.blog.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.scs.web.blog.domain.vo.ArticleVo;
 import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.factory.ServiceFactory;
 import com.scs.web.blog.service.ArticleService;
@@ -25,19 +26,26 @@ import java.util.List;
  * @Date 2019/11/9
  * @Version 1.0
  **/
-@WebServlet(urlPatterns = "/api/article")
+@WebServlet(urlPatterns = {"/api/article", "/api/article/hot"})
 public class ArticleController extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(ArticleController.class);
     private ArticleService articleService = ServiceFactory.getArticleServiceInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Article> articleList = articleService.initArticle();
+        String requestPath = req.getRequestURI();
         ResponseObject ro = null;
-        if (resp.getStatus() == 200) {
-            ro = ResponseObject.success(200, "成功", articleList);
-        } else {
-            ro = ResponseObject.error(resp.getStatus(), "失败");
+        List<Article> articleList = null;
+        List<ArticleVo> articleVoList = null;
+        switch (requestPath) {
+            case "/api/article":
+                articleList = articleService.initArticle();
+                ro = ResponseObject.success(200, "成功", articleList);
+                break;
+            case "/api/article/hot":
+                articleVoList = articleService.hotArticle();
+                ro = ResponseObject.success(200, "成功", articleVoList);
+                break;
         }
         PrintWriter out = resp.getWriter();
         Gson gson = new GsonBuilder().create();

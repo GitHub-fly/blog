@@ -1,19 +1,14 @@
 package com.scs.web.blog.dao.impl;
 
 import com.scs.web.blog.dao.UserDao;
-import com.scs.web.blog.domain.UserDto;
-import com.scs.web.blog.entity.Article;
+import com.scs.web.blog.domain.dto.UserDto;
 import com.scs.web.blog.entity.User;
-import com.scs.web.blog.service.UserService;
-import com.scs.web.blog.util.DataUtil;
 import com.scs.web.blog.util.DbUtil;
-import jdk.jfr.Timespan;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

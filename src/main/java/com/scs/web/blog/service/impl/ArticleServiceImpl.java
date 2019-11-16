@@ -1,6 +1,7 @@
 package com.scs.web.blog.service.impl;
 
 import com.scs.web.blog.dao.ArticleDao;
+import com.scs.web.blog.domain.vo.ArticleVo;
 import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.factory.DaoFactory;
 import com.scs.web.blog.service.ArticleService;
@@ -28,6 +29,19 @@ public class ArticleServiceImpl implements ArticleService {
         List<Article> articleList = new ArrayList<>();
         try {
             articleList = articleDao.selectAll();
+        } catch (SQLException e) {
+            logger.error("初始化图书信息出错");
+            e.printStackTrace();
+        }
+        logger.info("成功初始化图书信息");
+        return articleList;
+    }
+
+    @Override
+    public List<ArticleVo> hotArticle() {
+        List<ArticleVo> articleList = new ArrayList<>();
+        try {
+            articleList = articleDao.getHotArticle();
         } catch (SQLException e) {
             logger.error("初始化图书信息出错");
             e.printStackTrace();

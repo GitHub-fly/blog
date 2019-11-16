@@ -1,5 +1,6 @@
 package com.scs.web.blog.dao;
 
+import com.scs.web.blog.domain.vo.ArticleVo;
 import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.entity.User;
 
@@ -30,6 +31,10 @@ public interface ArticleDao {
      */
     List<Article> selectAll() throws SQLException;
 
-
-
+    /**
+     * 获取热门文章
+     * @return
+     * @throws SQLException
+     */
+    List<ArticleVo> getHotArticle() throws SQLException;
 }

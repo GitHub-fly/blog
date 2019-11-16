@@ -78,8 +78,6 @@ public class  DataUtil {
         List<User> list = new ArrayList<>();
         try {
              list = DaoFactory.getUserDaoInstance().selectAll();
-            System.out.println("sdasd");
-            System.out.println(list.size());
         } catch (SQLException e) {
             e.printStackTrace();
         }

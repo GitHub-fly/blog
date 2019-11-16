@@ -1,6 +1,6 @@
 package com.scs.web.blog.dao;
 
-import com.scs.web.blog.domain.UserDto;
+import com.scs.web.blog.domain.dto.UserDto;
 import com.scs.web.blog.factory.DaoFactory;
 import com.scs.web.blog.util.JSoupSpider;
 import org.junit.Test;

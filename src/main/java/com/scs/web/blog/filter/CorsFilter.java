@@ -25,6 +25,7 @@ public class CorsFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         logger.info("跨域过滤器初始化");
+        System.out.println("跨域初始化");
     }
 
     @Override
