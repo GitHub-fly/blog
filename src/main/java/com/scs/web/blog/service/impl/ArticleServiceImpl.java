@@ -49,4 +49,17 @@ public class ArticleServiceImpl implements ArticleService {
         logger.info("成功初始化图书信息");
         return articleList;
     }
+
+    @Override
+    public Article articleById(Long id) {
+        Article article = null;
+        try {
+           article = articleDao.getArticleById(id);
+        } catch (SQLException e) {
+            logger.error("获取id=" + id + "的文章出错");
+        }
+        return article;
+    }
+
+
 }

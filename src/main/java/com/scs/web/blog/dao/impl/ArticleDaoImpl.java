@@ -27,7 +27,7 @@ public class ArticleDaoImpl implements ArticleDao {
     @Override
     public int[] batchInsert(List<Article> articleList) throws SQLException {
         Connection connection = DbUtil.getConnection();
-        String sql = "INSERT INTO t_article (user_id, title,content,cover,diamond,comments,likes,publish_time) VALUES(?,?,?,?,?,?,?,?) ";
+        String sql = "INSERT INTO t_article (user_id, title,content,cover,diamond,comments,likes,publish_time,text) VALUES(?,?,?,?,?,?,?,?,?) ";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         connection.setAutoCommit(false);
         articleList.forEach(article -> {
@@ -40,9 +40,11 @@ public class ArticleDaoImpl implements ArticleDao {
                 pstmt.setInt(6, article.getComments());
                 pstmt.setInt(7, article.getLikes());
                 pstmt.setObject(8, article.getPublishTime());
+                pstmt.setString(9, article.getText());
                 pstmt.addBatch();
             } catch (SQLException e) {
                 logger.error("批量导入文章出错");
+                e.printStackTrace();
             }
         });
         int[] result = pstmt.executeBatch();
@@ -69,6 +71,7 @@ public class ArticleDaoImpl implements ArticleDao {
             article.setComments(rs.getInt("comments"));
             article.setLikes(rs.getInt("likes"));
             article.setPublishTime(rs.getTimestamp("publish_time").toLocalDateTime());
+            article.setText(rs.getString("text"));
             articleList.add(article);
         }
 //        DbUtil.close(rs, stmt, connection);
@@ -101,5 +104,28 @@ public class ArticleDaoImpl implements ArticleDao {
             articleList.add(article);
         }
         return articleList;
+    }
+
+    @Override
+    public Article getArticleById(Long id) throws SQLException {
+        Connection connection = DbUtil.getConnection();
+        String sql = "SELECT * FROM t_article WHERE id = ? ";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.setLong(1, id);
+        ResultSet rs = pstmt.executeQuery();
+        Article article = new Article();
+        while (rs.next()) {
+            article.setId(rs.getLong("id"));
+            article.setUserId(rs.getLong("user_id"));
+            article.setText(rs.getString("title"));
+            article.setContent(rs.getString("content"));
+            article.setCover(rs.getString("cover"));
+            article.setDiamond(rs.getInt("diamond"));
+            article.setComments(rs.getInt("comments"));
+            article.setLikes(rs.getInt("likes"));
+            article.setPublishTime(rs.getTimestamp("publish_time").toLocalDateTime());
+            article.setText(rs.getString("text"));
+        }
+        return article;
     }
 }

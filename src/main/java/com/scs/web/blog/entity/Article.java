@@ -24,5 +24,5 @@ public class Article {
     private Integer comments;
     private Integer likes;
     private LocalDateTime publishTime;
-
+    private String text;
 }

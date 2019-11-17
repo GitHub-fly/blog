@@ -81,7 +81,6 @@ public class JSoupSpider {
                 } else {
                     publishTime = item.child(1).child(2).text();
                 }
-
                 String title = item.child(2).child(0).child(0).text();
                 String content = item.child(2).child(1).text().substring(14);
                 String likes = item.child(2).child(3).child(0).text();
@@ -96,6 +95,17 @@ public class JSoupSpider {
                 article.setComments(Integer.valueOf(comments));
                 article.setLikes(Integer.valueOf(likes));
                 article.setPublishTime(Timestamp.valueOf(publishTime).toLocalDateTime());
+
+                String textUrl = item.child(2).child(0).child(0).attr("href");
+                Document document1 = null;
+                try {
+                    document1 = Jsoup.connect(textUrl).get();
+                } catch (IOException e) {
+                    logger.error("连接失败");
+                }
+                String textHtml = document1.getElementById("link-report").html();
+                article.setText(textHtml);
+
                 articleList.add(article);
             });
             j++;
@@ -103,4 +113,34 @@ public class JSoupSpider {
         }
         return articleList;
     }
+
+    public static void main(String[] args) {
+            Document document = null;
+            List<Article> articleList = new ArrayList<>(100);
+                try {
+                    document = Jsoup.connect("https://book.douban.com/review/best/?start=20").get();
+                } catch (IOException e) {
+                    logger.error("连接失败");
+                }
+                Elements mainList = document.getElementsByClass("main review-item");
+                mainList.forEach(item -> {
+                    String cover = item.child(0).child(0).attr("src");
+                    String publishTime = null;
+                    if (item.child(1).children().size() == 4) {
+                        publishTime = item.child(1).child(3).text();
+                    } else {
+                        publishTime = item.child(1).child(2).text();
+                    }
+                    String title = item.child(2).child(0).child(0).text();
+                    String textUrl = item.child(2).child(0).child(0).attr("href");
+                    Document document1 = null;
+                    try {
+                        document1 = Jsoup.connect(textUrl).get();
+                    } catch (IOException e) {
+                        logger.error("连接失败");
+                    }
+                    String textHtml = document1.getElementById("link-report").html();
+                    System.out.println(textHtml);
+                });
+        }
 }

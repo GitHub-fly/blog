@@ -13,4 +13,9 @@ public class ArticleServiceTest {
     public void initArticle() {
         System.out.println(articleService.initArticle().size());
     }
+
+    @Test
+    public void articleById() {
+        System.out.println(articleService.articleById(89l));
+    }
 }

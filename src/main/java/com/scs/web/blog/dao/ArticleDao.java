@@ -37,4 +37,12 @@ public interface ArticleDao {
      * @throws SQLException
      */
     List<ArticleVo> getHotArticle() throws SQLException;
+
+    /**
+     * 通过指定id查找文章详细信息
+     * @param id 指定文章id
+     * @return
+     * @throws SQLException
+     */
+    Article getArticleById(Long id) throws SQLException;
 }

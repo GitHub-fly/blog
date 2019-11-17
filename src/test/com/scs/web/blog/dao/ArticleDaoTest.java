@@ -29,6 +29,12 @@ public class ArticleDaoTest {
 
     @Test
     public void batchInsert() throws SQLException {
-        articleDao.batchInsert(JSoupSpider.getArticle());
+        System.out.println(articleDao.batchInsert(JSoupSpider.getArticle()).length);
+    }
+
+    @Test
+    public void getArticleById() throws SQLException {
+        System.out.println(articleDao.getArticleById(24l));
+
     }
 }

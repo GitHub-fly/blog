@@ -26,4 +26,10 @@ public interface ArticleService {
      */
     List<ArticleVo> hotArticle();
 
+    /**
+     * 获取指定id的文章信息
+     * @param id 指定文章id
+     * @return
+     */
+    Article articleById(Long id);
 }

@@ -12,6 +12,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * @author xunmi
@@ -121,7 +122,11 @@ public class UserDaoImpl implements UserDao {
             user.setNickname(rs.getString("nickname"));
             user.setAvatar(rs.getString("avatar"));
             user.setGender(rs.getString("gender"));
-            user.setBirthday(rs.getDate("birthday").toLocalDate());
+            if (rs.getDate("birthday") == null) {
+                user.setBirthday(rs.getDate("birthday").toLocalDate());
+            } else {
+                user.setBirthday(null);
+            }
             user.setAddress(rs.getString("address"));
             user.setIntroduction(rs.getString("introduction"));
             user.setHomepage(rs.getString("homepage"));
@@ -136,4 +141,5 @@ public class UserDaoImpl implements UserDao {
 //        DbUtil.close(rs, stmt, connection);
         return userList;
     }
+
 }

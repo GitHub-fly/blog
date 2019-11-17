@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author xunmi
@@ -26,7 +27,7 @@ import java.util.List;
  * @Date 2019/11/9
  * @Version 1.0
  **/
-@WebServlet(urlPatterns = {"/api/article", "/api/article/hot"})
+@WebServlet(urlPatterns = {"/api/article", "/api/article/hot", "/api/article/id/*"})
 public class ArticleController extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(ArticleController.class);
     private ArticleService articleService = ServiceFactory.getArticleServiceInstance();
@@ -37,6 +38,7 @@ public class ArticleController extends HttpServlet {
         ResponseObject ro = null;
         List<Article> articleList = null;
         List<ArticleVo> articleVoList = null;
+        Article article = null;
         switch (requestPath) {
             case "/api/article":
                 articleList = articleService.initArticle();
@@ -45,6 +47,11 @@ public class ArticleController extends HttpServlet {
             case "/api/article/hot":
                 articleVoList = articleService.hotArticle();
                 ro = ResponseObject.success(200, "成功", articleVoList);
+                break;
+            case "/api/article?id=*":
+                String id = requestPath.substring(requestPath.indexOf("=") + 1);
+                article = articleService.articleById(Long.valueOf(id));
+                ro = ResponseObject.success(200, "成功", article);
                 break;
         }
         PrintWriter out = resp.getWriter();

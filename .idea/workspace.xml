@@ -14,51 +14,30 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/controller/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/controller/ArticleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/ArticleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/ArticleDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/impl/ArticleDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/impl/ArticleDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/impl/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/domain/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/domain/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/filter/CorsFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/filter/CorsFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/entity/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/entity/Article.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/service/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/service/ArticleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/service/impl/ArticleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/service/impl/ArticleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/util/DataUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/util/DataUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/util/ResponseObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/util/ResponseObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/com/scs/web/blog/dao/UserDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/scs/web/blog/dao/UserDaoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/com/scs/web/blog/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/scs/web/blog/service/UserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/controller/ArticleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/controller/ArticleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/util/JSoupSpider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/util/JSoupSpider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com/scs/web/blog/dao/ArticleDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/scs/web/blog/dao/ArticleDaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com/scs/web/blog/service/ArticleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/scs/web/blog/service/ArticleServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/dao/ArticleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/dao/ArticleDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/dao/UserDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/dao/impl/ArticleDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/dao/impl/ArticleDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/dao/impl/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/dao/impl/UserDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/domain/UserDto.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/entity/Article.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/entity/Article.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/filter/CorsFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/filter/CorsFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/service/ArticleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/service/ArticleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/service/impl/ArticleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/service/impl/ArticleServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/util/DataUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/util/DataUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/util/ResponseObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/util/ResponseObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/util/JSoupSpider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/blog/WEB-INF/classes/com/scs/web/blog/util/JSoupSpider.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/controller/ArticleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/controller/ArticleController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/controller/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/dao/ArticleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/dao/ArticleDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/dao/UserDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/dao/impl/ArticleDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/dao/impl/ArticleDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/dao/impl/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/dao/impl/UserDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/domain/UserDto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/filter/CorsFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/filter/CorsFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/entity/Article.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/entity/Article.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/service/ArticleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/service/ArticleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/service/UserService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/service/impl/ArticleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/service/impl/ArticleServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/util/DataUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/util/DataUtil.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/util/JSoupSpider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/util/JSoupSpider.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/scs/web/blog/util/ResponseObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/scs/web/blog/util/ResponseObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/scs/web/blog/dao/UserDaoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/scs/web/blog/dao/UserDaoTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/scs/web/blog/service/UserServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/scs/web/blog/service/UserServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/scs/web/blog/dao/ArticleDaoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/scs/web/blog/dao/ArticleDaoTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/scs/web/blog/service/ArticleServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/scs/web/blog/service/ArticleServiceTest.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +103,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
-    <property name="last_opened_file_path" value="F:/jianshu" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../growth" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -138,8 +117,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="com.scs.web.blog.dao" />
       <recent name="com.scs.web.blog.service" />
+      <recent name="com.scs.web.blog.dao" />
       <recent name="com.scs.web.blog.util" />
       <recent name="com.scs.web.blog.dao.impl" />
     </key>
@@ -169,13 +148,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.blog">
-    <configuration name="JSoupSpider" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.scs.web.blog.util.JSoupSpider" />
+  <component name="RunManager" selected="Application.ArticleDaoImpl">
+    <configuration name="ArticleDaoImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.scs.web.blog.dao.impl.ArticleDaoImpl" />
       <module name="blog" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.scs.web.blog.util.*" />
+          <option name="PATTERN" value="com.scs.web.blog.dao.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -183,17 +162,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArticleDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserDaoImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.scs.web.blog.dao.impl.UserDaoImpl" />
       <module name="blog" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.scs.web.blog.dao.*" />
+          <option name="PATTERN" value="com.scs.web.blog.dao.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.scs.web.blog.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.scs.web.blog.dao.ArticleDaoTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -214,7 +191,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArticleDaoTest.selectAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ArticleDaoTest.getArticleById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="blog" />
       <extension name="coverage">
         <pattern>
@@ -224,23 +201,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.scs.web.blog.dao" />
       <option name="MAIN_CLASS_NAME" value="com.scs.web.blog.dao.ArticleDaoTest" />
-      <option name="METHOD_NAME" value="selectAll" />
+      <option name="METHOD_NAME" value="getArticleById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserDaoTest.batchInsert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ArticleServiceTest.articleById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="blog" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.scs.web.blog.dao.*" />
+          <option name="PATTERN" value="com.scs.web.blog.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.scs.web.blog.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.scs.web.blog.dao.UserDaoTest" />
-      <option name="METHOD_NAME" value="batchInsert" />
+      <option name="PACKAGE_NAME" value="com.scs.web.blog.service" />
+      <option name="MAIN_CLASS_NAME" value="com.scs.web.blog.service.ArticleServiceTest" />
+      <option name="METHOD_NAME" value="articleById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -319,20 +296,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.JSoupSpider" />
-      <item itemvalue="JUnit.UserDaoTest.batchInsert" />
+      <item itemvalue="Application.UserDaoImpl" />
       <item itemvalue="JUnit.ArticleDaoTest.batchInsert" />
-      <item itemvalue="JUnit.ArticleDaoTest" />
-      <item itemvalue="JUnit.ArticleDaoTest.selectAll" />
       <item itemvalue="Tomcat Server.blog" />
+      <item itemvalue="JUnit.ArticleDaoTest.getArticleById" />
+      <item itemvalue="JUnit.ArticleServiceTest.articleById" />
+      <item itemvalue="Application.ArticleDaoImpl" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.JSoupSpider" />
+        <item itemvalue="Application.ArticleDaoImpl" />
+        <item itemvalue="JUnit.ArticleServiceTest.articleById" />
+        <item itemvalue="JUnit.ArticleDaoTest.getArticleById" />
         <item itemvalue="JUnit.ArticleDaoTest.batchInsert" />
-        <item itemvalue="JUnit.ArticleDaoTest.selectAll" />
-        <item itemvalue="JUnit.ArticleDaoTest" />
-        <item itemvalue="JUnit.UserDaoTest.batchInsert" />
+        <item itemvalue="Application.UserDaoImpl" />
       </list>
     </recent_temporary>
   </component>
@@ -371,7 +348,10 @@
       <workItem from="1573780724452" duration="2904000" />
       <workItem from="1573799058734" duration="3589000" />
       <workItem from="1573882445591" duration="15344000" />
-      <workItem from="1573910200390" duration="730000" />
+      <workItem from="1573910200390" duration="1703000" />
+      <workItem from="1573958168969" duration="3492000" />
+      <workItem from="1573970017917" duration="12880000" />
+      <workItem from="1573988176738" duration="6744000" />
     </task>
     <servers />
   </component>

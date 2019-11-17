@@ -27,7 +27,7 @@ import java.util.Map;
  * @Date 2019/11/9
  * @Version 1.0
  **/
-@WebServlet(urlPatterns = {"/api/sign-in", "/api/register"})
+@WebServlet(urlPatterns = {"/api/sign-in", "/api/register", "/api/user/hot"})
 public class UserController extends HttpServlet {
 
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -73,6 +73,11 @@ public class UserController extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.print(gson.toJson(ro));
         out.close();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 
     @Override
