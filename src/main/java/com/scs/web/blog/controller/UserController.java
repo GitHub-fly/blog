@@ -3,6 +3,7 @@ package com.scs.web.blog.controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.scs.web.blog.domain.dto.UserDto;
+import com.scs.web.blog.entity.User;
 import com.scs.web.blog.factory.ServiceFactory;
 import com.scs.web.blog.service.UserService;
 import com.scs.web.blog.util.Message;
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,7 +30,7 @@ import java.util.Map;
  * @Date 2019/11/9
  * @Version 1.0
  **/
-@WebServlet(urlPatterns = {"/api/sign-in", "/api/register", "/api/user/hot"})
+@WebServlet(urlPatterns = {"/api/sign-in", "/api/register", "/api/user/hot", "/api/user/detail/*"})
 public class UserController extends HttpServlet {
 
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -46,14 +49,11 @@ public class UserController extends HttpServlet {
         Map<String, Object> map = null;
         // 获取请求路径
         String requestPath = req.getRequestURI().trim();
-        System.out.println(requestPath);
         switch (requestPath) {
             case "/api/sign-in":
-                System.out.println("进入登录");
                 map = userService.signIn(userDto);
                 break;
             case "/api/register":
-                System.out.println("进入注册");
                 map = userService.register(userDto);
                 break;
         }
@@ -77,7 +77,24 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        List<User> userList = new ArrayList<>();
+        String requestPath = req.getRequestURI().trim();
+        ResponseObject ro = null;
+        User user = null;
+        switch (requestPath) {
+            case "/api/user/hot":
+                userList = userService.hotUser();
+                ro = ResponseObject.success(resp.getStatus(), resp.getStatus() == 200 ? "成功" : "失败", userList);
+                break;
+            default:
+                String id = requestPath.substring(requestPath.lastIndexOf("/") + 1);
+                user = userService.userById(Long.valueOf(id));
+                ro = ResponseObject.success(resp.getStatus(), resp.getStatus() == 200 ? "成功" : "失败", user);
+        }
+        PrintWriter out = resp.getWriter();
+        Gson gson = new GsonBuilder().create();
+        out.print(gson.toJson(ro));
+        out.close();
     }
 
     @Override

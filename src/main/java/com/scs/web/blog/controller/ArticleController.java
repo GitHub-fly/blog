@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author xunmi
@@ -27,7 +26,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @Date 2019/11/9
  * @Version 1.0
  **/
-@WebServlet(urlPatterns = {"/api/article", "/api/article/hot", "/api/article/id/*"})
+@WebServlet(urlPatterns = {"/api/article", "/api/article/hot", "/api/article/detail/*"})
 public class ArticleController extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(ArticleController.class);
     private ArticleService articleService = ServiceFactory.getArticleServiceInstance();
@@ -48,11 +47,10 @@ public class ArticleController extends HttpServlet {
                 articleVoList = articleService.hotArticle();
                 ro = ResponseObject.success(200, "成功", articleVoList);
                 break;
-            case "/api/article?id=*":
-                String id = requestPath.substring(requestPath.indexOf("=") + 1);
+            default:
+                String id = requestPath.substring(requestPath.lastIndexOf("/") + 1);
                 article = articleService.articleById(Long.valueOf(id));
                 ro = ResponseObject.success(200, "成功", article);
-                break;
         }
         PrintWriter out = resp.getWriter();
         Gson gson = new GsonBuilder().create();

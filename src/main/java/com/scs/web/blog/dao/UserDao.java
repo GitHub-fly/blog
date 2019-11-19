@@ -1,6 +1,8 @@
 package com.scs.web.blog.dao;
 
 import com.scs.web.blog.domain.dto.UserDto;
+import com.scs.web.blog.domain.vo.ArticleVo;
+import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.entity.User;
 
 import java.sql.SQLException;
@@ -46,4 +48,18 @@ public interface UserDao {
      */
     List<User> selectAll() throws SQLException;
 
+    /**
+     * 获取热门博主（通过粉丝数）
+     * @return
+     * @throws SQLException
+     */
+    List<User> getHotUser() throws SQLException;
+
+    /**
+     * 通过指定id查找文章详细信息
+     * @param id 指定文章id
+     * @return
+     * @throws SQLException
+     */
+    User getUserById(Long id) throws SQLException;
 }

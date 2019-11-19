@@ -12,7 +12,6 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * @author xunmi
@@ -131,7 +130,7 @@ public class UserDaoImpl implements UserDao {
             user.setIntroduction(rs.getString("introduction"));
             user.setHomepage(rs.getString("homepage"));
             user.setFollows(rs.getShort("follows"));
-            user.setFollows(rs.getShort("fans"));
+            user.setFans(rs.getShort("fans"));
             user.setArticles(rs.getShort("articles"));
             user.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
             user.setAddress(rs.getString("address"));
@@ -140,6 +139,71 @@ public class UserDaoImpl implements UserDao {
         }
 //        DbUtil.close(rs, stmt, connection);
         return userList;
+    }
+
+    @Override
+    public List<User> getHotUser() throws SQLException {
+        List<User> userList = new ArrayList<>();
+        Connection connection = DbUtil.getConnection();
+        String sql = "SELECT * FROM t_user ORDER BY fans DESC LIMIT 20";
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while (rs.next()) {
+            User user = new User();
+            user.setId(rs.getLong("id"));
+            user.setMobile(rs.getString("mobile"));
+            user.setNickname(rs.getString("nickname"));
+            user.setAvatar(rs.getString("avatar"));
+            user.setGender(rs.getString("gender"));
+            if (rs.getDate("birthday") == null) {
+                user.setBirthday(rs.getDate("birthday").toLocalDate());
+            } else {
+                user.setBirthday(null);
+            }
+            user.setAddress(rs.getString("address"));
+            user.setIntroduction(rs.getString("introduction"));
+            user.setHomepage(rs.getString("homepage"));
+            user.setFollows(rs.getShort("follows"));
+            user.setFans(rs.getShort("fans"));
+            user.setArticles(rs.getShort("articles"));
+            user.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
+            user.setAddress(rs.getString("address"));
+            user.setStatus(rs.getShort("status"));
+            userList.add(user);
+        }
+        return userList;
+    }
+
+    @Override
+    public User getUserById(Long id) throws SQLException {
+        Connection connection = DbUtil.getConnection();
+        String sql = "SELECT * FROM t_user WHERE id = ? ";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.setLong(1, id);
+        ResultSet rs = pstmt.executeQuery();
+        User user = new User();
+        while (rs.next()) {
+            user.setId(rs.getLong("id"));
+            user.setMobile(rs.getString("mobile"));
+            user.setNickname(rs.getString("nickname"));
+            user.setAvatar(rs.getString("avatar"));
+            user.setGender(rs.getString("gender"));
+            if (rs.getDate("birthday") == null) {
+                user.setBirthday(rs.getDate("birthday").toLocalDate());
+            } else {
+                user.setBirthday(null);
+            }
+            user.setAddress(rs.getString("address"));
+            user.setIntroduction(rs.getString("introduction"));
+            user.setHomepage(rs.getString("homepage"));
+            user.setFollows(rs.getShort("follows"));
+            user.setFans(rs.getShort("fans"));
+            user.setArticles(rs.getShort("articles"));
+            user.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
+            user.setAddress(rs.getString("address"));
+            user.setStatus(rs.getShort("status"));
+        }
+        return user;
     }
 
 }

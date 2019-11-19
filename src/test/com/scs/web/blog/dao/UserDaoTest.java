@@ -1,6 +1,7 @@
 package com.scs.web.blog.dao;
 
 import com.scs.web.blog.domain.dto.UserDto;
+import com.scs.web.blog.entity.User;
 import com.scs.web.blog.factory.DaoFactory;
 import com.scs.web.blog.util.JSoupSpider;
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserDaoTest {
 
@@ -41,6 +43,28 @@ public class UserDaoTest {
             }
         } catch (SQLException e) {
             logger.error("新增一名用户失败！");
+        }
+    }
+
+    @Test
+    public void getHotUser() {
+        try {
+           List<User> userList = userDao.getHotUser();
+            userList.forEach(user -> {
+                System.out.println(user);
+            });
+        } catch (SQLException e) {
+            logger.error("查询热门博主出现异常");
+        }
+    }
+
+    @Test
+    public void getUserById() {
+        try {
+            User user = userDao.getUserById(12l);
+            System.out.println(user);
+        } catch (SQLException e) {
+            logger.error("查询指定id用户出错");
         }
     }
 }
