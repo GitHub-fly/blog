@@ -56,10 +56,18 @@ public interface UserDao {
     List<User> getHotUser() throws SQLException;
 
     /**
-     * 通过指定id查找文章详细信息
-     * @param id 指定文章id
+     * 通过指定id查找用户详细信息
+     * @param id 指定用户id
      * @return
      * @throws SQLException
      */
     User getUserById(Long id) throws SQLException;
+
+    /**
+     * 通过指定id查找用户发表的文章信息
+     * @param id 指定用户id
+     * @return
+     * @throws SQLException
+     */
+    List<Article> getArticleById(Long id) throws SQLException;
 }

@@ -31,15 +31,15 @@ public interface UserService {
     Map<String, Object> register(UserDto userDto);
 
     /**
-     * 获取人们博主（通过粉丝数）
+     * 获取热门博主（通过粉丝数）
      * @return
      */
     List<User> hotUser();
 
     /**
      * 获取指定id的用户信息
-     * @param id 指定文章id
-     * @return
+     * @param id 指定用户id
+     * @return 返回该用户信息 及 发表的文章信息
      */
-    User userById(Long id);
+    List<Object> userById(Long id);
 }

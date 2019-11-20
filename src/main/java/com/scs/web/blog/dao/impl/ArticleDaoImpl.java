@@ -9,6 +9,7 @@ import com.scs.web.blog.util.DbUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -116,8 +117,8 @@ public class ArticleDaoImpl implements ArticleDao {
         Article article = new Article();
         while (rs.next()) {
             article.setId(rs.getLong("id"));
-            article.setUserId(rs.getLong("user_id"));
-            article.setText(rs.getString("title"));
+            article.setUserId(rs.getLong(   "user_id"));
+            article.setTitle(rs.getString("title"));
             article.setContent(rs.getString("content"));
             article.setCover(rs.getString("cover"));
             article.setDiamond(rs.getInt("diamond"));
@@ -128,7 +129,5 @@ public class ArticleDaoImpl implements ArticleDao {
         }
         return article;
     }
-
-
 
 }

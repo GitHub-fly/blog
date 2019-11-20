@@ -1,6 +1,7 @@
 package com.scs.web.blog.dao;
 
 import com.scs.web.blog.domain.dto.UserDto;
+import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.entity.User;
 import com.scs.web.blog.factory.DaoFactory;
 import com.scs.web.blog.util.JSoupSpider;
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoTest {
@@ -66,5 +68,18 @@ public class UserDaoTest {
         } catch (SQLException e) {
             logger.error("查询指定id用户出错");
         }
+    }
+
+    @Test
+    public void getArticleById() {
+        List<Article> articleList = new ArrayList<>();
+        try {
+            articleList = userDao.getArticleById(12l);
+        } catch (SQLException e) {
+            logger.error("查询某用户发表的文章信息出错");
+        }
+        articleList.forEach(article -> {
+            System.out.println(article);
+        });
     }
 }

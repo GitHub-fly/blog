@@ -80,7 +80,7 @@ public class UserController extends HttpServlet {
         List<User> userList = new ArrayList<>();
         String requestPath = req.getRequestURI().trim();
         ResponseObject ro = null;
-        User user = null;
+        List<Object> list = null;
         switch (requestPath) {
             case "/api/user/hot":
                 userList = userService.hotUser();
@@ -88,8 +88,8 @@ public class UserController extends HttpServlet {
                 break;
             default:
                 String id = requestPath.substring(requestPath.lastIndexOf("/") + 1);
-                user = userService.userById(Long.valueOf(id));
-                ro = ResponseObject.success(resp.getStatus(), resp.getStatus() == 200 ? "成功" : "失败", user);
+                list = userService.userById(Long.valueOf(id));
+                ro = ResponseObject.success(resp.getStatus(), resp.getStatus() == 200 ? "成功" : "失败", list);
         }
         PrintWriter out = resp.getWriter();
         Gson gson = new GsonBuilder().create();

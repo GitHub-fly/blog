@@ -5,6 +5,7 @@ import com.scs.web.blog.entity.User;
 import com.scs.web.blog.factory.ServiceFactory;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,8 @@ public class UserServiceTest {
 
     @Test
     public void userById() {
-        User user = userService.userById(12l);
-        System.out.println(user);
+        List<Object> list = userService.userById(12l);
+        System.out.println(list.get(0));
+        System.out.println(list.get(1));
     }
 }

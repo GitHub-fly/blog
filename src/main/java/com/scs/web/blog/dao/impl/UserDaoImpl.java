@@ -2,6 +2,7 @@ package com.scs.web.blog.dao.impl;
 
 import com.scs.web.blog.dao.UserDao;
 import com.scs.web.blog.domain.dto.UserDto;
+import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.entity.User;
 import com.scs.web.blog.util.DbUtil;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -206,4 +207,27 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    @Override
+    public List<Article> getArticleById(Long id) throws SQLException {
+        Connection connection = DbUtil.getConnection();
+        String sql = "SELECT * FROM t_article WHERE user_id = ? ";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.setLong(1, id);
+        ResultSet rs = pstmt.executeQuery();
+        List<Article> articleList = new ArrayList<>();
+        while (rs.next()) {
+            Article article = new Article();
+            article.setId(rs.getLong("id"));
+            article.setTitle(rs.getString("title"));
+            article.setContent(rs.getString("content"));
+            article.setCover(rs.getString("cover"));
+            article.setDiamond(rs.getInt("diamond"));
+            article.setComments(rs.getInt("comments"));
+            article.setLikes(rs.getInt("likes"));
+            article.setPublishTime(rs.getTimestamp("publish_time").toLocalDateTime());
+            article.setText(rs.getString("text"));
+            articleList.add(article);
+        }
+        return articleList;
+    }
 }

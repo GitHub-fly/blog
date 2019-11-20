@@ -2,6 +2,7 @@ package com.scs.web.blog.service.impl;
 
 import com.scs.web.blog.dao.UserDao;
 import com.scs.web.blog.domain.dto.UserDto;
+import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.entity.User;
 import com.scs.web.blog.factory.DaoFactory;
 import com.scs.web.blog.service.UserService;
@@ -85,13 +86,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User userById(Long id) {
+    public List<Object> userById(Long id) {
         User user = null;
+        List<Article> articleList = new ArrayList<>();
+        List<Object> list = new ArrayList<>();
+
         try {
             user = userDao.getUserById(id);
+            articleList = userDao.getArticleById(id);
+            list.add(user);
+            list.add(articleList);
         } catch (SQLException e) {
             logger.error("获取id=" + id + "的文章出错");
         }
-        return user;
+        return list;
     }
 }
