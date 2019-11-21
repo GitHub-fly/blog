@@ -24,10 +24,15 @@ public class ImageUtil {
     public static BufferedImage getImage(String content, int width, int height){
         BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
         Graphics2D g = (Graphics2D) img.getGraphics();
-        g.setColor(new Color(73, 156, 84));
+        // 画矩形
         g.drawRect(0, 0, width, height);
-        g.setColor(new Color(43, 43, 43));
-        g.drawString(content, 100, 50);
+        // 填充背景颜色
+        g.setColor(new Color(193, 193, 193));
+        g.fillRect(0, 0 , width, height);
+        // 写字
+        g.setFont(new Font("微软雅黑", Font.BOLD, 25));
+        g.setColor(new Color(73, 156, 84));
+        g.drawString(content, 0, 0);
         return img;
     }
 
