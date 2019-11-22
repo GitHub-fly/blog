@@ -122,7 +122,7 @@ public class UserDaoImpl implements UserDao {
             user.setNickname(rs.getString("nickname"));
             user.setAvatar(rs.getString("avatar"));
             user.setGender(rs.getString("gender"));
-            if (rs.getDate("birthday") == null) {
+            if (rs.getDate("birthday") != null) {
                 user.setBirthday(rs.getDate("birthday").toLocalDate());
             } else {
                 user.setBirthday(null);
@@ -189,7 +189,7 @@ public class UserDaoImpl implements UserDao {
             user.setNickname(rs.getString("nickname"));
             user.setAvatar(rs.getString("avatar"));
             user.setGender(rs.getString("gender"));
-            if (rs.getDate("birthday") == null) {
+            if (rs.getDate("birthday") != null) {
                 user.setBirthday(rs.getDate("birthday").toLocalDate());
             } else {
                 user.setBirthday(null);
@@ -229,5 +229,12 @@ public class UserDaoImpl implements UserDao {
             articleList.add(article);
         }
         return articleList;
+    }
+
+    @Override
+    public int countArticlesById(Long id) throws SQLException {
+        Connection connection = DbUtil.getConnection();
+//        String sql =
+        return 0;
     }
 }

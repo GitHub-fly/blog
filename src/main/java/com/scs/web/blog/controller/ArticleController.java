@@ -42,16 +42,16 @@ public class ArticleController extends HttpServlet {
         switch (requestPath) {
             case "/api/article":
                 articleList = articleService.initArticle();
-                ro = ResponseObject.success(200, "成功", articleList);
+                ro = ResponseObject.success(resp.getStatus(), resp.getStatus() == 200 ? "成功" : "失败", articleList);
                 break;
             case "/api/article/hot":
                 articleVoList = articleService.hotArticle();
-                ro = ResponseObject.success(200, "成功", articleVoList);
+                ro = ResponseObject.success(resp.getStatus(), resp.getStatus() == 200 ? "成功" : "失败", articleVoList);
                 break;
             default:
                 String id = requestPath.substring(requestPath.lastIndexOf("/") + 1);
                 article = articleService.articleById(Long.valueOf(id));
-                ro = ResponseObject.success(200, "成功", article);
+                ro = ResponseObject.success(resp.getStatus(), resp.getStatus() == 200 ? "成功" : "失败", article);
         }
         PrintWriter out = resp.getWriter();
         Gson gson = new GsonBuilder().create();

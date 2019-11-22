@@ -43,10 +43,10 @@ public class ArticleServiceImpl implements ArticleService {
         try {
             articleList = articleDao.getHotArticle();
         } catch (SQLException e) {
-            logger.error("初始化图书信息出错");
+            logger.error("获取热门图书信息出错");
             e.printStackTrace();
         }
-        logger.info("成功初始化图书信息");
+        logger.info("成功获取热门图书信息");
         return articleList;
     }
 
@@ -55,6 +55,9 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = null;
         try {
            article = articleDao.getArticleById(id);
+           if (article != null) {
+               logger.info("成功获取id=" + id + "的文章信息");
+           }
         } catch (SQLException e) {
             logger.error("获取id=" + id + "的文章出错");
         }

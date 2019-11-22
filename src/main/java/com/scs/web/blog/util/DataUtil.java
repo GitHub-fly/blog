@@ -1,5 +1,7 @@
 package com.scs.web.blog.util;
 
+import com.scs.web.blog.dao.TopicDao;
+import com.scs.web.blog.entity.Topic;
 import com.scs.web.blog.entity.User;
 import com.scs.web.blog.factory.DaoFactory;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -76,7 +78,7 @@ public class  DataUtil {
      * 获取随机作者id
      * @return
      */
-    public static int getUserId() {
+    public static long getUserId() {
         List<User> list = new ArrayList<>();
         try {
              list = DaoFactory.getUserDaoInstance().selectAll();
@@ -88,6 +90,17 @@ public class  DataUtil {
         return random.nextInt(userIdMax) + 1;
     }
 
+    public static long getTopicId() {
+        List<Topic> list = new ArrayList<>();
+        try {
+            list = DaoFactory.getTopicDaoInstance().selectAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        int topicIdMax = list.size();
+        Random random = new Random();
+        return random.nextInt(topicIdMax) + 1;
+    }
     /**
      * 获取一串唯一的编码，用作上传文件的文件名（不会出现重复）
      * 以时间2019-11-21T15:19:57.285367300 为依据进行获取
@@ -132,4 +145,5 @@ public class  DataUtil {
         String name = UUID.randomUUID().toString().replace("-", "").substring(0, 16) + type;
         return name;
     }
+
 }

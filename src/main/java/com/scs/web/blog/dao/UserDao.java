@@ -70,4 +70,12 @@ public interface UserDao {
      * @throws SQLException
      */
     List<Article> getArticleById(Long id) throws SQLException;
+
+    /**
+     * 通过指定id查找该用户所发表的文章条数
+     * @param id 指定用户id
+     * @return
+     * @throws SQLException
+     */
+    int countArticlesById(Long id) throws SQLException;
 }

@@ -2,7 +2,6 @@ package com.scs.web.blog.dao;
 
 import com.scs.web.blog.domain.vo.ArticleVo;
 import com.scs.web.blog.entity.Article;
-import com.scs.web.blog.entity.User;
 
 import java.sql.SQLException;
 import java.util.List;

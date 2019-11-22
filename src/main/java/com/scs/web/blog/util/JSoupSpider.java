@@ -1,7 +1,9 @@
 package com.scs.web.blog.util;
 
 import com.scs.web.blog.entity.Article;
+import com.scs.web.blog.entity.Topic;
 import com.scs.web.blog.entity.User;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.print.Doc;
 import java.io.IOException;
+import java.sql.Struct;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,6 +30,10 @@ import java.util.Random;
 public class JSoupSpider {
     private static Logger logger = LoggerFactory.getLogger(JSoupSpider.class);
 
+    /**
+     * 爬取用户信息
+     * @return
+     */
     public static List<User> getUsers() {
         Document document = null;
         List<User> userList = new ArrayList<>(100);
@@ -62,6 +69,10 @@ public class JSoupSpider {
         return userList;
     }
 
+    /**
+     * 爬取文章信息
+     * @return
+     */
     public static List<Article> getArticle() {
         Document document = null;
         List<Article> articleList = new ArrayList<>(100);
@@ -103,9 +114,15 @@ public class JSoupSpider {
                 } catch (IOException e) {
                     logger.error("连接失败");
                 }
-                String textHtml = document1.getElementById("link-report").html();
-                article.setText(textHtml);
-
+                Elements re = document1.getElementsByClass("review-content clearfix");
+                Elements ps = re.get(0).select("p");
+                StringBuilder textHtml = new StringBuilder();
+                ps.forEach(p -> {
+                    if (!p.text().equals("")) {
+                        textHtml.append(p);
+                    }
+                });
+                article.setText(textHtml.toString());
                 articleList.add(article);
             });
             j++;
@@ -114,33 +131,66 @@ public class JSoupSpider {
         return articleList;
     }
 
-    public static void main(String[] args) {
-            Document document = null;
-            List<Article> articleList = new ArrayList<>(100);
-                try {
-                    document = Jsoup.connect("https://book.douban.com/review/best/?start=20").get();
-                } catch (IOException e) {
-                    logger.error("连接失败");
-                }
-                Elements mainList = document.getElementsByClass("main review-item");
-                mainList.forEach(item -> {
-                    String cover = item.child(0).child(0).attr("src");
-                    String publishTime = null;
-                    if (item.child(1).children().size() == 4) {
-                        publishTime = item.child(1).child(3).text();
-                    } else {
-                        publishTime = item.child(1).child(2).text();
-                    }
-                    String title = item.child(2).child(0).child(0).text();
-                    String textUrl = item.child(2).child(0).child(0).attr("href");
-                    Document document1 = null;
-                    try {
-                        document1 = Jsoup.connect(textUrl).get();
-                    } catch (IOException e) {
-                        logger.error("连接失败");
-                    }
-                    String textHtml = document1.getElementById("link-report").html();
-                    System.out.println(textHtml);
-                });
+    /**
+     * 爬取专题信息
+     * @return
+     */
+    public static List<Topic> getTopic() {
+        List<Topic> topicList = new ArrayList<>(100);
+        Connection connection;
+        Document document = null;
+        for (int i = 1; i <= 3; i++) {
+            try {
+                // 分析页面得到url和惨
+                connection = Jsoup.connect("https://www.jianshu.com/recommendations/collections?order_by=hot&page=" + i);
+                // 添加请求头
+                connection.header("X_PJAX", "true");
+                document = connection.get();
+            } catch (IOException e) {
+                logger.error("连接失败");
+            }
+            assert document != null;
+            Elements list = document.select(".collection-wrap");
+            list.forEach(item -> {
+                Elements elements = item.children();
+                Topic topic = new Topic();
+                Element link = elements.select("a").get(0);
+                Element logo = link.child(0);
+                Element name = link.child(1);
+                Element description = link.child(2);
+                Element article = elements.select(".count > a").get(0);
+                Element follows = elements.select(".count > a").get(0);
+                topic.setAdminId(DataUtil.getUserId());
+                topic.setTopicName(name.text());
+                topic.setLogo(logo.attr("src"));
+                topic.setDescription(description.text());
+                String[] str = StringUtil.getDigital(article.text());
+                topic.setArticles(Integer.parseInt(str[0]));
+                str = StringUtil.getDigital(follows.text());
+                topic.setFollows(Integer.parseInt(str[0]));
+                topic.setCreateTime(LocalDateTime.now());
+                topicList.add(topic);
+            });
         }
+        return topicList;
+    }
+
+
+    public static void main(String[] args) {
+        Document document = null;
+        try {
+            document = Jsoup.connect("https://book.douban.com/review/9593753/").get();
+            Elements re = document.getElementsByClass("review-content clearfix");
+            System.out.println(re.size());
+            Elements ps = re.get(0).select("p");
+            System.out.println(ps.size());
+            ps.forEach(p -> {
+                if (!p.text().equals("")) {
+                    System.out.println(p);
+                }
+            });
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

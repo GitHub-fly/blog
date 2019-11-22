@@ -17,6 +17,7 @@ public class Article {
 
     private Long id;
     private Long userId;
+    private Long topicId;
     private String title;
     private String content;
     private String cover;

@@ -9,11 +9,9 @@ import com.scs.web.blog.util.DbUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * @author xunmi
@@ -28,20 +26,21 @@ public class ArticleDaoImpl implements ArticleDao {
     @Override
     public int[] batchInsert(List<Article> articleList) throws SQLException {
         Connection connection = DbUtil.getConnection();
-        String sql = "INSERT INTO t_article (user_id, title,content,cover,diamond,comments,likes,publish_time,text) VALUES(?,?,?,?,?,?,?,?,?) ";
+        String sql = "INSERT INTO t_article (user_id,topic_id,title,content,cover,diamond,comments,likes,publish_time,text) VALUES(?,?,?,?,?,?,?,?,?,?) ";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         connection.setAutoCommit(false);
         articleList.forEach(article -> {
             try {
-                pstmt.setInt(1, DataUtil.getUserId());
-                pstmt.setString(2, article.getTitle());
-                pstmt.setString(3, article.getContent());
-                pstmt.setString(4, article.getCover());
-                pstmt.setInt(5, article.getDiamond());
-                pstmt.setInt(6, article.getComments());
-                pstmt.setInt(7, article.getLikes());
-                pstmt.setObject(8, article.getPublishTime());
-                pstmt.setString(9, article.getText());
+                pstmt.setLong(1, DataUtil.getUserId());
+                pstmt.setLong(2, DataUtil.getTopicId());
+                pstmt.setString(3, article.getTitle());
+                pstmt.setString(4, article.getContent());
+                pstmt.setString(5, article.getCover());
+                pstmt.setInt(6, article.getDiamond());
+                pstmt.setInt(7, article.getComments());
+                pstmt.setInt(8, article.getLikes());
+                pstmt.setObject(9, article.getPublishTime());
+                pstmt.setString(10, article.getText());
                 pstmt.addBatch();
             } catch (SQLException e) {
                 logger.error("批量导入文章出错");
@@ -65,6 +64,7 @@ public class ArticleDaoImpl implements ArticleDao {
             Article article = new Article();
             article.setId(rs.getLong("id"));
             article.setUserId(rs.getLong("user_id"));
+            article.setTopicId(rs.getLong("topic_id"));
             article.setTitle(rs.getString("title"));
             article.setContent(rs.getString("content"));
             article.setCover(rs.getString("cover"));
@@ -83,7 +83,7 @@ public class ArticleDaoImpl implements ArticleDao {
     public List<ArticleVo> getHotArticle() throws SQLException {
         List<ArticleVo> articleList = new ArrayList<>();
         Connection connection = DbUtil.getConnection();
-        String sql = "SELECT a.id, a.user_id, a.title, a.content, a.cover, a.diamond, a.comments, a.likes, a.publish_time, b.nickname\n" +
+        String sql = "SELECT a.id, a.user_id, a.topic_id, a.title, a.content, a.cover, a.diamond, a.comments, a.likes, a.publish_time, b.nickname\n" +
                 "FROM t_article a\n" +
                 "LEFT JOIN t_user b\n" +
                 "ON a.user_id = b.id\n" +
@@ -94,6 +94,7 @@ public class ArticleDaoImpl implements ArticleDao {
             ArticleVo article = new ArticleVo();
             article.setId(rs.getLong("id"));
             article.setUserId(rs.getLong("user_id"));
+            article.setTopicId(rs.getLong("topic_id"));
             article.setNickname(rs.getString("nickname"));
             article.setTitle(rs.getString("title"));
             article.setContent(rs.getString("content"));
@@ -117,7 +118,8 @@ public class ArticleDaoImpl implements ArticleDao {
         Article article = new Article();
         while (rs.next()) {
             article.setId(rs.getLong("id"));
-            article.setUserId(rs.getLong(   "user_id"));
+            article.setUserId(rs.getLong("user_id"));
+            article.setTopicId(rs.getLong("topic_id"));
             article.setTitle(rs.getString("title"));
             article.setContent(rs.getString("content"));
             article.setCover(rs.getString("cover"));

@@ -79,8 +79,11 @@ public class UserServiceImpl implements UserService {
         List<User> userList = new ArrayList<>();
         try {
             userList = userDao.getHotUser();
+            if (userList.size() > 0) {
+                logger.info("成功获取热门博主信息");
+            }
         } catch (SQLException e) {
-            logger.error("查询热门博主出现异常");
+            logger.error("获取热门博主信息出错");
         }
         return userList;
     }
@@ -90,14 +93,16 @@ public class UserServiceImpl implements UserService {
         User user = null;
         List<Article> articleList = new ArrayList<>();
         List<Object> list = new ArrayList<>();
-
         try {
             user = userDao.getUserById(id);
             articleList = userDao.getArticleById(id);
             list.add(user);
             list.add(articleList);
+            if (user != null && articleList.size() > 0) {
+                logger.info("成功获取id=" + id + "的文章信息");
+            }
         } catch (SQLException e) {
-            logger.error("获取id=" + id + "的文章出错");
+            logger.error("获取id=" + id + "的文章信息出错");
         }
         return list;
     }

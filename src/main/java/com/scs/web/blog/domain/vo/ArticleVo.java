@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 public class ArticleVo {
     private Long id;
     private Long userId;
+    private Long topicId;
     private String nickname;
     private String title;
     private String content;

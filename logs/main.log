@@ -1,2 +1,1 @@
-2019-11-19.21:38:51 ERROR [main] com.scs.web.blog.dao.UserDaoTest.getUserById:67  查询指定id用户出错
-2019-11-19.21:39:29 ERROR [main] com.scs.web.blog.dao.UserDaoTest.getUserById:67  查询指定id用户出错
+2019-11-22.11:16:26 INFO  [main] com.scs.web.blog.dao.ArticleDaoTest.selectAll:27  成功初始化图书信息
