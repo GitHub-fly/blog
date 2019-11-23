@@ -37,4 +37,9 @@ public class ArticleDaoTest {
         System.out.println(articleDao.getArticleById(24l));
 
     }
+
+    @Test
+    public void getCountByUserId() throws SQLException {
+        System.out.println(articleDao.getCountByUserId(33l));
+    }
 }

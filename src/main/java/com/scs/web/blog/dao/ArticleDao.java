@@ -44,4 +44,12 @@ public interface ArticleDao {
      * @throws SQLException
      */
     Article getArticleById(Long id) throws SQLException;
+
+    /**
+     * 通过指定博主id查找自己表发的文章篇数（用于在t_user表中计算articles的值
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    int getCountByUserId(Long id) throws SQLException;
 }

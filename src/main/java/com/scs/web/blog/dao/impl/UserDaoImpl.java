@@ -104,7 +104,7 @@ public class UserDaoImpl implements UserDao {
         pstmt.setString(3, userDto.getNickname());
         pstmt.setObject(4, Timestamp.valueOf(LocalDateTime.now()));
         int i = pstmt.executeUpdate();
-        System.out.println("执行为插入方法后受影响的行数为：" + i);
+        System.out.println("执行完插入方法后受影响的行数为：" + i);
         return i;
     }
 

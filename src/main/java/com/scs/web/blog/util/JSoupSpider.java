@@ -1,8 +1,10 @@
 package com.scs.web.blog.util;
 
+import com.scs.web.blog.dao.ArticleDao;
 import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.entity.Topic;
 import com.scs.web.blog.entity.User;
+import com.scs.web.blog.factory.DaoFactory;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.print.Doc;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.sql.Struct;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -29,7 +32,8 @@ import java.util.Random;
  **/
 public class JSoupSpider {
     private static Logger logger = LoggerFactory.getLogger(JSoupSpider.class);
-
+    private static ArticleDao articleDao = DaoFactory.getArticleDaoInstance();
+    static int userId = 1;
     /**
      * 爬取用户信息
      * @return
@@ -37,6 +41,7 @@ public class JSoupSpider {
     public static List<User> getUsers() {
         Document document = null;
         List<User> userList = new ArrayList<>(100);
+
         for (int i = 1; i <= 3; i++) {
             try {
                 document = Jsoup.connect("https://www.jianshu.com/recommendations/users?utm_source=desktop&utm_medium=index-users&page=" + i).get();
@@ -61,9 +66,14 @@ public class JSoupSpider {
                 user.setHomepage("");
                 user.setFollows((short) new Random().nextInt(500));
                 user.setFans((short) new Random().nextInt(500));
-                user.setArticles((short) new Random().nextInt(10));
+                try {
+                    user.setArticles((short) articleDao.getCountByUserId((long) userId));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 user.setStatus((short) 1);
                 userList.add(user);
+                userId++;
             });
         }
         return userList;

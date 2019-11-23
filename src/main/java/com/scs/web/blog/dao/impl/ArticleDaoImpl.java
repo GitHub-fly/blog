@@ -132,4 +132,17 @@ public class ArticleDaoImpl implements ArticleDao {
         return article;
     }
 
+    @Override
+    public int getCountByUserId(Long id) throws SQLException {
+        Connection connection = DbUtil.getConnection();
+        String sql = "SELECT COUNT(*) FROM t_article WHERE user_id = ? ";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.setLong(1, id);
+        ResultSet rs = pstmt.executeQuery();
+        int count = 0;
+        while (rs.next()) {
+            count = rs.getInt(1);
+        }
+        return count;
+    }
 }
