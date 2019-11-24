@@ -28,12 +28,18 @@ public class CodeController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 生成验证码
         String code = StringUtil.getCode();
+        // 处理验证码
+        StringBuilder codePlus = new StringBuilder(code);
+        codePlus.insert(1, "  ");
+        codePlus.insert(4, "  ");
+        codePlus.insert(7, "  ");
         // 存入session
         HttpSession session = req.getSession();
-        System.out.println(session.getId());
-        session.setAttribute("code", code);
+        session.setAttribute("code", codePlus);
+        // 设置“头”
+        resp.setHeader("Access-Token", session.getId());
         // 生成图片
-        BufferedImage img = ImageUtil.getImage(code, 200, 100);
+        BufferedImage img = ImageUtil.getImage(codePlus.toString(), 200, 40);
         // 设置resp的contentType类型(响应类型)
         resp.setContentType("image/jpg");
         // 将图片通过输出流，返回给客户端

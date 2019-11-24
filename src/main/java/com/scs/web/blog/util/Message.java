@@ -13,4 +13,6 @@ public class Message {
     public static final String MOBILE_NOT_FOUND = "手机号不存在";
     public static final String REGISTER_SUCCESS = "注册成功";
     public static final String REGISTER_DEFEATED = "注册失败";
+    public static final String CODE_ERROR = "验证码错误";
+
 }

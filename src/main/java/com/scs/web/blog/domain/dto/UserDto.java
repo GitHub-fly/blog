@@ -15,6 +15,7 @@ public class UserDto {
     private String mobile;
     private String password;
     private String nickname;
+    private String code;
 
     public UserDto(String mobile, String password) {
         this.mobile = mobile;

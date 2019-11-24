@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.scs.web.blog.domain.dto.UserDto;
 import com.scs.web.blog.entity.User;
 import com.scs.web.blog.factory.ServiceFactory;
+import com.scs.web.blog.listener.MySessionContext;
 import com.scs.web.blog.service.UserService;
 import com.scs.web.blog.util.Message;
 import com.scs.web.blog.util.ResponseObject;
@@ -16,9 +17,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,12 +49,23 @@ public class UserController extends HttpServlet {
         }
         Gson gson = new GsonBuilder().create();
         UserDto userDto = gson.fromJson(stringBuilder.toString(), UserDto.class);
+        String inputCode = userDto.getCode().trim();
         Map<String, Object> map = null;
+        String sessionId = req.getHeader("Access-Token");
+        System.out.println("客户端传来的JSESSIONID：" + sessionId);
+        MySessionContext myc = MySessionContext.getInstance();
+        HttpSession session = myc.getSession(sessionId);
+        String correctCode = session.getAttribute("code").toString().replace("  ", "");
+        System.out.println("正确的验证码：" + correctCode);
         // 获取请求路径
         String requestPath = req.getRequestURI().trim();
+        PrintWriter out = resp.getWriter();
         switch (requestPath) {
             case "/api/sign-in":
                 map = userService.signIn(userDto);
+                if (!inputCode.equalsIgnoreCase(correctCode)) {
+                    map.put("msg", "验证码错误");
+                }
                 break;
             case "/api/register":
                 map = userService.register(userDto);
@@ -67,10 +81,10 @@ public class UserController extends HttpServlet {
             case Message.PASSWORD_ERROR:
             case Message.MOBILE_NOT_FOUND:
             case Message.REGISTER_DEFEATED:
+            case Message.CODE_ERROR:
             default:
                 ro = ResponseObject.success(200, msg);
         }
-        PrintWriter out = resp.getWriter();
         out.print(gson.toJson(ro));
         out.close();
     }

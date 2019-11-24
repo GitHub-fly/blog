@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.ConnectException;
 
 /**
  * @author xunmi
@@ -31,8 +32,17 @@ public class ImageUtil {
         g.fillRect(0, 0 , width, height);
         // 写字
         g.setFont(new Font("微软雅黑", Font.BOLD, 25));
-        g.setColor(new Color(73, 156, 84));
-        g.drawString(content, 0, 0);
+        g.setColor(new Color(43, 43, 43));
+        g.drawString(content, (width-90)/2, height-10);
+        // 画线条
+        g.setColor(new Color(124, 164, 156));
+        g.drawLine(0, 10, 200, 10);
+        g.drawLine(0, 20, 200, 20);
+        g.drawLine(0, 30, 200, 30);
+        g.drawLine(0, 40, 200, 40);
+        g.setColor(new Color(152, 118, 170));
+        g.drawLine(20, 30, 80, 5);
+        g.drawLine(20, 30, 180, 30);
         return img;
     }
 

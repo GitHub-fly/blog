@@ -11,12 +11,12 @@
   <component name="ChangeListManager">
     <list default="true" id="907bd953-c72a-421c-b5d9-dbe4ceb41426" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/main.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/main.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/ArticleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/ArticleDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/impl/ArticleDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/impl/ArticleDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/dao/impl/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/util/JSoupSpider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/util/JSoupSpider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/com/scs/web/blog/dao/ArticleDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/scs/web/blog/dao/ArticleDaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/controller/CodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/controller/CodeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/domain/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/domain/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/filter/CorsFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/filter/CorsFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/util/ImageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/util/ImageUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/util/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scs/web/blog/util/Message.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -130,6 +130,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.blog">
+    <configuration name="ImageUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.scs.web.blog.util.ImageUtil" />
+      <module name="blog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.scs.web.blog.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ArticleDaoTest.getCountByUserId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="blog" />
       <extension name="coverage">
@@ -141,22 +154,6 @@
       <option name="PACKAGE_NAME" value="com.scs.web.blog.dao" />
       <option name="MAIN_CLASS_NAME" value="com.scs.web.blog.dao.ArticleDaoTest" />
       <option name="METHOD_NAME" value="getCountByUserId" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TopicDaoTest.getHotTopic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="blog" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.scs.web.blog.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.scs.web.blog.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.scs.web.blog.dao.TopicDaoTest" />
-      <option name="METHOD_NAME" value="getHotTopic" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -283,20 +280,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.TopicDaoTest.getHotTopic" />
       <item itemvalue="JUnit.TopicServiceTest.hotTopic" />
-      <item itemvalue="Tomcat Server.blog" />
       <item itemvalue="JUnit.ArticleDaoTest.getCountByUserId" />
       <item itemvalue="JUnit.UserDaoTest.insert" />
       <item itemvalue="JUnit.UserDaoTest.batchInsert" />
+      <item itemvalue="Tomcat Server.blog" />
+      <item itemvalue="Application.ImageUtil" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ImageUtil" />
         <item itemvalue="JUnit.UserDaoTest.batchInsert" />
         <item itemvalue="JUnit.UserDaoTest.insert" />
         <item itemvalue="JUnit.ArticleDaoTest.getCountByUserId" />
         <item itemvalue="JUnit.TopicServiceTest.hotTopic" />
-        <item itemvalue="JUnit.TopicDaoTest.getHotTopic" />
       </list>
     </recent_temporary>
   </component>
@@ -347,7 +344,8 @@
       <workItem from="1574300821315" duration="28618000" />
       <workItem from="1574381165848" duration="17924000" />
       <workItem from="1574431894971" duration="220000" />
-      <workItem from="1574491878814" duration="7766000" />
+      <workItem from="1574491878814" duration="8639000" />
+      <workItem from="1574559142953" duration="10644000" />
     </task>
     <servers />
   </component>
